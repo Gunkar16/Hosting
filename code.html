@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Code Copy Example</title>
+</head>
+<body>
+  <button id="copyButton">Copy Code</button>
+  <pre id="codeSnippet">
+    void setup() {
+
+        pinMode(13, OUTPUT);
+        pinMode(12, OUTPUT);
+        pinMode(11, OUTPUT);
+        pinMode(10, OUTPUT);
+        pinMode(9, OUTPUT);
+        pinMode(8, OUTPUT);
+      
+        pinMode(7, INPUT_PULLUP);
+        pinMode(6, INPUT_PULLUP);
+        pinMode(5, INPUT_PULLUP);
+      
+        Serial.begin(9600);
+      }
+      int S1;
+      int S2;
+      int S3;
+      
+      int Value1;
+      int Value2;
+      int Value3;
+      
+      void loop() {
+      
+        S1 = digitalRead(7);
+        S2 = digitalRead(6);
+        S3 = digitalRead(5);
+        if (S1 == 0) {
+          Value1 = 1;
+          Value2 = 0;
+          Value3 = 0;
+        }
+        if (S2 == 0) {
+          Value2 = 1;
+          Value1 = 0;
+          Value3 = 0;
+        }
+        if (S3 == 0) {
+          Value1 = 0;
+          Value2 = 0;
+          Value3 = 1;
+        }
+        if (Value1 == 1) {
+          Serial.println("Switch 1");
+          digitalWrite(13, HIGH);
+          digitalWrite(12, HIGH);
+          digitalWrite(11, HIGH);
+          digitalWrite(10, HIGH);
+          digitalWrite(9, HIGH);
+          digitalWrite(8, HIGH);
+          delay(500);  // Wait for 1000 millisecond(s)
+          digitalWrite(13, LOW);
+          digitalWrite(12, LOW);
+          digitalWrite(11, LOW);
+          digitalWrite(10, LOW);
+          digitalWrite(9, LOW);
+          digitalWrite(8, LOW);
+          delay(500);  // Wait for 1000 millisecond(s)
+        }
+        if (Value2 == 1) {
+          Serial.println("Switch 2");
+          digitalWrite(13, HIGH);
+          delay(70);
+          digitalWrite(12, HIGH);
+          delay(70);
+          digitalWrite(11, HIGH);
+          delay(70);
+          digitalWrite(10, HIGH);
+          delay(70);
+          digitalWrite(9, HIGH);
+          delay(70);
+          digitalWrite(8, HIGH);
+          delay(70);
+          digitalWrite(8, LOW);
+          delay(70);
+          digitalWrite(9, LOW);
+          delay(70);
+          digitalWrite(10, LOW);
+          delay(70);
+          digitalWrite(11, LOW);
+          delay(70);
+          digitalWrite(12, LOW);
+          delay(70);
+          digitalWrite(13, LOW);
+          delay(70);
+        }
+        if(Value3 == 1){
+              digitalWrite(13, LOW);
+          digitalWrite(12, LOW);
+          digitalWrite(11, LOW);
+          digitalWrite(10, LOW);
+          digitalWrite(9, LOW);
+          digitalWrite(8, LOW);
+          Serial.println("Switch 3");
+        
+        }
+      }
+      
+  </pre>
+  <script src="main.js"></script>
+</body>
+</html>
