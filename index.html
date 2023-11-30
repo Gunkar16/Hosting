@@ -1,16 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gunkar16's Linking Page</title>
-    <link rel="stylesheet" href="link.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Code Copy Example</title>
 </head>
 <body>
-    <h1 id="title">Gunkar16's Linking Page</h1>
-    <h2>Enter Password</h2>
-    <input id="password">
-    <button onclick="submit()">Submit</button>
+  <button id="copyButton">Copy Code</button>
+  <pre id="codeSnippet">
+   
+#include LiquidCrystal.h
+  const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
+  LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+  int arrivingdatabyte = 0;
+  int firstNumber;
+  int secondNumber;
+  bool E = false;
+  
+  void setup() {
+    lcd.begin(16, 2);
+    Serial.begin(9600);
+    lcd.print("Give first no.:");
+    lcd.setCursor(0, 1);
+    lcd.print("_");
+  }
+  
+  void loop() {
+    addition();
+  }
+  
+  void addition() {
+    if (Serial.available() > 0)
+      if (E == true) {
+        secondNumber = Serial.parseInt();
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print(String(firstNumber) + " + " + String(secondNumber) + " = " + String(firstNumber + secondNumber));
+        lcd.setCursor(0,1);
+        // For resetting
+        delay(5000);
+        E = false;
+        lcd.clear();
+        lcd.setCursor(0, 0);
+        lcd.print("Give first no.:");
+        lcd.setCursor(0, 1);
+        lcd.print("_");
+      } else {
+        firstNumber = Serial.parseInt();
+        lcd.setCursor(0, 1);
+        lcd.print(String(firstNumber) + " + " + "_");
+        lcd.setCursor(0, 0);
+        lcd.print("Enter second no.:");
+        E = true;
+      }
+    }
+  }
+      
+  </pre>
+  <script src="main.js"></script>
 </body>
-<script src="link.js"></script>
 </html>
